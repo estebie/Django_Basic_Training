@@ -1,13 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import View
+from django.views.generic import TemplateView
 
-# Create your views here.
-def home(request):
-    return render(request, "home.html", {"html_var" : True})
+from .models import RestaurantLocation
 
-def about(request):
-    return render(request, "about.html", {})
-
-def contact(request):
-    return render(request, "contact.html", {})
-    
+def restaurant_listview(request):
+    template_name = 'restaurants/restaurants_list.html'
+    queryset = RestaurantLocation.objects.all()
+    context = {
+        "object_list": queryset
+    }
+    return render(request, template_name, context)
