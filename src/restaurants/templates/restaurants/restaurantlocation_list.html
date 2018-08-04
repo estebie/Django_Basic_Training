@@ -6,10 +6,24 @@
 {% endblock head_title %}
 
 {% block content %}
-<h1>Restaurant List</h1>
-<ul>
-    {% for object in object_list %}
-        <li><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></li>
-    {% endfor %}
-</ul>
+
+<section id="callaction" class="home-section paddingtop-90 paddingbot-10">	
+        <div class="container">
+             <div class="row">
+                 <div class="col-md-12">
+                     <div class="callaction bg-gray">
+                         <div class="row">
+                            <h1>Restaurant List</h1>
+                         </div>
+                         <div class="row">
+                            {% for object in object_list %}
+                                <li><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></li>
+                            {% endfor %}
+                        </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+ </section>	
+
 {% endblock content %}
