@@ -1,16 +1,17 @@
 <!Doctype html>
 <html lang="en">
-    <head>
-        <title>{% block head_title %} Asa Ta Eat {% endblock head_title %}</title>
-        {% include 'snippets/css.html' %}
-    </head>
-    <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-        <div id="wrapper">
-        {% include 'snippets/nav.html' %}
-            {% block content %}
-            {% endblock content %}
-        </div>
-        <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-        {% include 'snippets/js.html' %}
-    </body>
+<head>
+    <title>{% block head_title %} Asa Ta Eat {% endblock head_title %}</title>
+    {% include 'snippets/css.html' %}
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    <div id="wrapper">
+    {% include 'snippets/nav.html' %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+    {% include 'snippets/footer.html' %}
+    <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+    {% include 'snippets/js.html' %}
+</body>
 </html>

@@ -1,8 +1,92 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
+<section id="intro" class="intro">
+		<div class="intro-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+					<div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+					<h2 class="h-ultra"><span style="color:white;text-shadow: 2px 2px 4px #000000;font-size:80px">#AsaTaEat</span></h2>
+					</div>
+					<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
+					<h4 class="h-light"> </h4>
+					</div>
+						<div class="well well-trans">
+						<div class="wow fadeInRight" data-wow-delay="0.1s">
 
-{% if form.errors %}
+						<ul class="lead-list">
+							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable monthly premium packages</strong><br />Lorem ipsum dolor sit amet, in verterem persecuti vix, sit te meis</span></li>
+							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Choose your favourite doctor</strong><br />Sit zril sanctus scaevola ei, ea usu movet graeco</span></li>
+							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Only use friendly environment</strong><br />Wisi lobortis eos ex, per at movet delectus, qui no vocent deleniti</span></li>
+						</ul>
+
+						</div>
+						</div>
+
+
+					</div>
+					<div class="col-lg-6">
+						<div class="form-wrapper">
+						<div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+						
+							<div class="panel panel-skin">
+							<div class="panel-heading">
+									<h3 class="panel-title"><span class="fa fa-pencil-square-o"></span> Login now!</h3>
+									</div>
+									<div class="panel-body">
+									<form role="form" class="lead" method="post" action="{% url 'home' %}">
+                                        {% csrf_token %}
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<div class="form-group">
+                                                    {{ form.username.label_tag }}
+													{{ form.username|add_class:"form-control input-md" }}
+												</div>
+											</div>
+											<!-- <div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+													<label>Last Name</label>
+													<input type="text" name="last_name" id="last_name" class="form-control input-md">
+												</div>
+											</div> -->
+										</div>
+
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<div class="form-group">
+													<label>{{ form.password.label_tag }}</label>
+													{{ form.password|add_class:"form-control input-md"  }}
+												</div>
+											</div>
+											<!-- <div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+													<label>Phone number</label>
+													<input type="text" name="phone" id="phone" class="form-control input-md">
+												</div>
+											</div> -->
+										</div>
+										
+										<input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
+                                        <input type="hidden" name="next" value="{{ next }}" />
+                                        {% if form.errors %}
+                                        <p class="text-danger">Your username and password didn't match. Please try again.</p>
+                                        {% endif %}
+									</form>
+								</div>
+							</div>				
+						
+						</div>
+						</div>
+					</div>					
+				</div>		
+			</div>
+		</div>		
+    </section>
+	
+
+<!-- {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
@@ -13,24 +97,6 @@
     {% else %}
     <p>Please login to see this page.</p>
     {% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'home' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-
+{% endif %} -->
 
 {% endblock %}
