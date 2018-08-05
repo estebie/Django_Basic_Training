@@ -5,11 +5,13 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import ItemForm
 from .models import Item
 
-class ItemListView(ListView):
+class ItemListView(ListView, LoginRequiredMixin):
+    login_url = '/login/'
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)
 
-class ItemDetailView(DetailView):
+class ItemDetailView(DetailView, LoginRequiredMixin):
+    login_url = '/login/'
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)
 
@@ -40,6 +42,7 @@ class ItemUpdateView(UpdateView, LoginRequiredMixin):
     
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)
+
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.user = self.request.user
