@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from .forms import ItemForm
@@ -33,6 +34,7 @@ class ItemCreateView(CreateView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         context = super(ItemCreateView, self).get_context_data(**kwargs)
         context['title'] = "Add Item"
+        context['return_url'] = reverse('menus:list')
         return context     
 
 class ItemUpdateView(UpdateView, LoginRequiredMixin):
@@ -56,5 +58,6 @@ class ItemUpdateView(UpdateView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         context = super(ItemUpdateView, self).get_context_data(**kwargs)
         context['title'] = "Update Item"
+        context['return_url'] = reverse('menus:list')
         return context           
 # Create your views here.

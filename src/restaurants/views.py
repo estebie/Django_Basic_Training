@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 
 from .forms import RestaurantLocationCreateForm
@@ -33,6 +34,7 @@ class RestaurantCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(RestaurantCreateView, self).get_context_data(**kwargs)
         context['title'] = "Add Restaurant"
+        context['return_url'] = reverse('restaurants:list')
         return context
 
 class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
@@ -43,7 +45,7 @@ class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
         return RestaurantLocation.objects.filter(owner=self.request.user)
-        
+
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.owner = self.request.user
@@ -52,4 +54,5 @@ class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
         context['title'] = "Add Restaurant"
+        context['return_url'] = reverse('restaurants:list')
         return context

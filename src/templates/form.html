@@ -19,6 +19,7 @@
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <button type="submit" class="btn btn-skin  btn-lg">Save</button>
+                                <a href="{{ return_url }}" class="btn btn-danger btn-lg">Cancel</a>
                             </form>
                         </div>
                         {% if form.errors.non_field_errors %}
