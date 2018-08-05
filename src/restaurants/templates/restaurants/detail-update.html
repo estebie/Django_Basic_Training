@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+    {{ form.instance.title }} ||
+    {{ block.super }}
+{% endblock head_title %}
+
+{% block content %}
+
+<section id="callaction" class="home-section paddingtop-90 paddingbot-10">	
+        <div class="container">
+             <div class="row">
+                 <div class="col-md-12">
+                     <div class="callaction bg-gray">
+                         <div class="row">
+                            <h5>Name: {{ form.instance.name }}<small> <br/>Category: {{ form.instance.category }}</small></h1>
+                         </div>
+                         <div class="row">
+                            <h6>Location: {{ form.instance.location }}</h2>
+                        </div>
+                        <div class="row">
+                            <h6>Added on: {{ form.instance.timestamp }}</h2>
+                        </div>
+                        <div class="row">
+                            <h6>Updated: {{ form.instance.updated|timesince }}</h2>
+                        </div>    
+                     </div>
+                 </div>
+             </div>
+             {% include 'snippets/form-snippet.html' with form=form %}
+         </div>
+ </section>	
+{% endblock content %}

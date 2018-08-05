@@ -1,0 +1,29 @@
+
+<div class="row">
+        <div class="col-md-12">
+            <div class="callaction bg-gray">
+            <div class="row">
+                <h1>{{ title }}</h1>
+            </div> 
+            <div class="row">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-skin  btn-lg">Save</button>
+                    {% if title != "Make Changes:" %}
+                        <a href="{{ return_url }}" class="btn btn-danger btn-lg">Cancel</a>
+                    {% else %}
+                    <a href="{{ return_url }}" class="btn btn-danger btn-lg">Back</a>
+                    {% endif %}
+                </form>
+            </div>
+            {% if form.errors.non_field_errors %}
+            <div class="row">
+                <p class="text-danger"> 
+                    {{ form.errors.non_field_errors }}
+                </p>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+</div>

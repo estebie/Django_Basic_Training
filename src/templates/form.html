@@ -7,31 +7,8 @@
 
 {% block content %}
 <section id="callaction" class="home-section paddingtop-90 paddingbot-10">	
-        <div class="container">
-             <div class="row">
-                 <div class="col-md-12">
-                     <div class="callaction bg-gray">
-                        <div class="row">
-                            <h1>{{ title }}</h1>
-                        </div> 
-                        <div class="row">
-                            <form method="POST">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <button type="submit" class="btn btn-skin  btn-lg">Save</button>
-                                <a href="{{ return_url }}" class="btn btn-danger btn-lg">Cancel</a>
-                            </form>
-                        </div>
-                        {% if form.errors.non_field_errors %}
-                        <div class="row">
-                            <p class="text-danger"> 
-                                {{ form.errors.non_field_errors }}
-                            </p>
-                        </div>
-                        {% endif %}
-                     </div>
-                 </div>
-             </div>
-         </div>
+    <div class="container">
+        {% include 'snippets/form-snippet.html' with form=form %}
+    </div>
  </section
 {% endblock content %}

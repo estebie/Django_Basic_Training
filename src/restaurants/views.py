@@ -40,7 +40,7 @@ class RestaurantCreateView(LoginRequiredMixin, CreateView):
 class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
     form_class = RestaurantLocationCreateForm
     login_url = '/login/'
-    template_name = 'form.html'
+    template_name = 'restaurants/detail-update.html'
     # success_url = '/restaurants'
 
     def get_queryset(self):
@@ -53,6 +53,6 @@ class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
     
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
-        context['title'] = "Add Restaurant"
+        context['title'] = "Make Changes:"
         context['return_url'] = reverse('restaurants:list')
         return context
