@@ -13,14 +13,14 @@
                  <div class="col-md-12">
                      <div class="callaction bg-gray">
                          <div class="row">
-                            <h1>My Restaurants <br/><small><a href="{% url 'restaurants:create' %}">Add Restaurant</a></small></h1>
+                            <h1>My Restaurants <br/><small><a  class="btn btn-success" href="{% url 'restaurants:create' %}">Add Restaurant</a></small></h1>
                          </div>
                          <div class="row">
                              <ul>
                                 {% for object in object_list %}
                                     <li><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></li>
                                 {% empty %}
-                                    <li><a href="{% url 'restaurants:create' %}">Add One Restaurant</a></li>
+                                    <li><a  class="btn btn-success" href="{% url 'restaurants:create' %}">Add One Restaurant</a></li>
                                 {% endfor %}
                             </ul>
                         </div>

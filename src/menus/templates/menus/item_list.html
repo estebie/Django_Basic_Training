@@ -14,6 +14,7 @@
                      <div class="callaction bg-gray">
                          <div class="row">
                             <h1>Menu Items List</h1>
+                            <h5><a   class="btn btn-success" href="{% url 'menus:create' %}">Add Item</a></h5>
                          </div>
                          <div class="row">
                             <ul>
@@ -45,6 +46,8 @@
                                             {% endfor %}
                                         </ul>
                                     {% endif %}
+                                {% empty %}
+                                    <li><a  class="btn btn-success" href="{% url 'menus:create' %}">Add One Item</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
