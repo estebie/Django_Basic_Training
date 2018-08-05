@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+    Menu Items ||
+    {{ block.super }}
+{% endblock head_title %}
+
+{% block content %}
+
+<section id="callaction" class="home-section paddingtop-90 paddingbot-10">	
+        <div class="container">
+             <div class="row">
+                 <div class="col-md-12">
+                     <div class="callaction bg-gray">
+                         <div class="row">
+                            <h6>{{ form.instance.name }} Details</h6>
+                            <p>Location: {{ form.instance.restaurant }}</p>
+                            {% if form.instance.contents %}
+                                <p>Contents: </p>
+                                <ul>
+                                    {% for content in form.instance.get_contents %}
+                                        <li>
+                                            {{ content }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if form.instance.excludes %}
+                                <p>Excludes: </p>
+                                <ul>
+                                    {% for exclude in form.instance.get_excludes %}
+                                        <li>
+                                            {{ exclude }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                     </div>
+                 </div>
+             </div>
+             {% include 'snippets/form-snippet.html' with form=form %}
+         </div>
+ </section>	
+ {% endblock content %}

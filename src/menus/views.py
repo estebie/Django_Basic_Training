@@ -40,7 +40,7 @@ class ItemCreateView(CreateView, LoginRequiredMixin):
 class ItemUpdateView(UpdateView, LoginRequiredMixin):
     form_class = ItemForm
     login_url = '/login/'
-    template_name = 'form.html'
+    template_name = 'menus/detail-update.html'
     
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)
@@ -57,7 +57,7 @@ class ItemUpdateView(UpdateView, LoginRequiredMixin):
 
     def get_context_data(self, **kwargs):
         context = super(ItemUpdateView, self).get_context_data(**kwargs)
-        context['title'] = "Update Item"
+        context['title'] = "Make Changes:"
         context['return_url'] = reverse('menus:list')
         return context           
 # Create your views here.
