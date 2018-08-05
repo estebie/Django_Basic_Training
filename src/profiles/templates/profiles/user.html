@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+    {{ user.username }} ||
+    {{ block.super }}
+{% endblock head_title %}
+
+{% block content %}
+<section id="callaction" class="home-section paddingtop-90 paddingbot-10">	
+        <div class="container">
+             <div class="row">
+                 <div class="col-md-12">
+                     <div class="callaction bg-gray">
+                        <div class="row">
+                            <h1 style="padding-top: 4px">{{ user.username }}</h1>
+                            <hr>
+                        </div> 
+                        {% if user.restaurantlocation_set.all.exists %}
+                        <div class="row">
+                            <ul>
+                                {% for rest in user.restaurantlocation_set.all %}
+                                    <li>
+                                        <p style="padding: 4px"><b>{{ rest.name }}</b> {{ rest.location }} | {{ rest.category }}</p>
+                                        <ul>
+                                            {% for item in rest.item_set.all %}
+                                                <li>
+                                                    {{ item.name }}
+                                                    {% for ing in item.get_contents %}
+                                                    <br/>
+                                                    <span class="badge badge-default">{{ ing }}</span>
+                                                    {% endfor %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% else %}
+                        <p class="lead">No items foud</p>
+                        {% endif %}
+                     </div>
+                 </div>
+             </div>
+         </div>
+ </section
+{% endblock content %}
