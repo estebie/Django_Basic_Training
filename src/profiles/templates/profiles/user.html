@@ -39,7 +39,7 @@
                             <ul>
                                 {% for rest in locations %}
                                     <li>
-                                        <p style="padding: 4px">
+                                        <p style="padding: 4px; margin: 4px">
                                             <b>{{ rest.name }}</b> 
                                             <a href="{{ request.path }}?query={{ rest.location }}">{{ rest.location }}</a> | 
                                             <a href="{{ request.path }}?query={{ rest.category }}">{{ rest.category }}</a>
@@ -48,9 +48,9 @@
                                             {% for item in rest.item_set.all %}
                                                 <li>
                                                     <a href="{{ request.path }}?query={{ item.name }}">{{ item.name }}</a>
+                                                    <br>
                                                     {% for ing in item.get_contents %}
-                                                    <br/>
-                                                    <span class="badge badge-default">{{ ing }}</span>
+                                                        <span class="badge badge-default">{{ ing }}</span>
                                                     {% endfor %}
                                                 </li>
                                             {% endfor %}

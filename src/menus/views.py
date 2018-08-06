@@ -1,10 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
 
 from .forms import ItemForm
 from .models import Item
+
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return redirect('/login')
+            # return render(request, "registration/login.html", {})
+        
+        user = request.user
+        is_following_user_ids = [x.user.id for x in user.is_following.all()]
+        qs = Item.objects.filter(user__id__in=is_following_user_ids, public=True)
+        print(qs)
+        return render(request, "home.html", {'object_list': qs})
 
 class ItemListView(ListView, LoginRequiredMixin):
     login_url = '/login/'
