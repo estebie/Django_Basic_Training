@@ -8,23 +8,43 @@
 {% block content %}
 <section id="callaction" class="home-section paddingtop-90 paddingbot-10">	
         <div class="container">
+             <!-- <div class="row">
+                <div class="col-md-12" style="margin-bottom:10px">
+                    <form class="form" method="GET" action=".">
+                        <input type="text" name="query" placeholder="Search..." value="{{ request.GET.query }}">
+                        <button class"btn btn-default" type="submit">Search</button>
+                    </form>
+                </div>
+             </div> -->
              <div class="row">
                  <div class="col-md-12">
                      <div class="callaction bg-gray">
                         <div class="row">
-                            <h1 style="padding-top: 4px">{{ user.username }}</h1>
-                            <hr>
+                            <h1>{{ user.username }}</h1>
                         </div> 
-                        {% if user.restaurantlocation_set.all.exists %}
+                        <div class="row">
+                            <div class="col-md-12" style="margin-bottom:10px">
+                                <form class="form" method="GET" action=".">
+                                    <input type="text" name="query" placeholder="Search..." value="{{ request.GET.query }}">
+                                    <button class"btn btn-default" type="submit">Search</button>
+                                </form>
+                            </div>
+                         </div>
+                         <hr>
+                        {% if locations %}
                         <div class="row">
                             <ul>
-                                {% for rest in user.restaurantlocation_set.all %}
+                                {% for rest in locations %}
                                     <li>
-                                        <p style="padding: 4px"><b>{{ rest.name }}</b> {{ rest.location }} | {{ rest.category }}</p>
+                                        <p style="padding: 4px">
+                                            <b>{{ rest.name }}</b> 
+                                            <a href="{{ request.path }}?query={{ rest.location }}">{{ rest.location }}</a> | 
+                                            <a href="{{ request.path }}?query={{ rest.category }}">{{ rest.category }}</a>
+                                        </p>
                                         <ul>
                                             {% for item in rest.item_set.all %}
                                                 <li>
-                                                    {{ item.name }}
+                                                    <a href="{{ request.path }}?query={{ item.name }}">{{ item.name }}</a>
                                                     {% for ing in item.get_contents %}
                                                     <br/>
                                                     <span class="badge badge-default">{{ ing }}</span>
