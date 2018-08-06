@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block head_title %}
+     Register ||
+    {{ block.super }}
+{% endblock head_title %}
+
+{% block content %}
+<section id="callaction" class="home-section paddingtop-90 paddingbot-10">	
+    <div class="container">
+        <div class="panel-body">
+                <form role="form" class="lead" method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Register" class="btn btn-skin btn-block btn-lg">
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    {% if form.errors %}
+                    <p class="text-danger">{{ form.errors }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>				
+    </div>
+ </section
+{% endblock content %}

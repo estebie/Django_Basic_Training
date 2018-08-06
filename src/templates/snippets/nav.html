@@ -22,6 +22,7 @@
                     <li class="{% if request.path  == home %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
                     <li class="{% if request.path  == restaurant_list %}active{% endif %}"><a href="{% url 'restaurants:list' %}">Restaurants</a></li>
                     <li class="{% if request.path  == menu_list %}active{% endif %}"><a href="{% url 'menus:list' %}">Items</a></li>
+                    <li class=""><a href="{% url 'logout' %}">Logout</a></li>
                     {% endif %}
                     <!-- <li><a href="#service">Service</a></li>
                     <li><a href="#doctor">Doctors</a></li>
