@@ -20,7 +20,10 @@
                  <div class="col-md-12">
                      <div class="callaction bg-gray">
                         <div class="row">
-                            <h1>{{ user.username }}</h1>
+                            <h1>
+                                {{ user.username }} 
+                                {% include 'profiles/snippets/follow_form.html' with username=user is_following=is_following %}
+                            </h1>
                         </div> 
                         <div class="row">
                             <div class="col-md-12" style="margin-bottom:10px">
