@@ -10,7 +10,14 @@
                         <img src="{% static "img/logo.png" %}" alt="" width="150" height="40" />
                     </a>
                 </div>
-
+                <!-- {% if request.path != login %} -->
+                <!-- <div class="navbar-header page-scroll">
+                    <form class="form" method="GET" action="{% url 'search' %}" style="margin-top: 25px">
+                        <input type="text" name="username" placeholder="Search user..." value="{{ request.GET.query }}">
+                        <button class"btn btn-default" type="submit">Search</button>
+                    </form>
+                </div> -->
+                <!-- {% endif %} -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
@@ -19,6 +26,12 @@
                     {% url 'menus:list' as menu_list %}
                     {% url 'login' as login %}
                     {% if request.path != login %}
+                    <li>
+                        <form class="form" method="GET" action="{% url 'search' %}" style="margin-top: 10px">
+                                <input type="text" name="username" placeholder="Search user..." value="{{ request.GET.query }}">
+                                <button type="submit">Search</button>
+                        </form>
+                    </li>
                     <li class="{% if request.path  == home %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
                     <li class="{% if request.path  == restaurant_list %}active{% endif %}"><a href="{% url 'restaurants:list' %}">Restaurants</a></li>
                     <li class="{% if request.path  == menu_list %}active{% endif %}"><a href="{% url 'menus:list' %}">Items</a></li>

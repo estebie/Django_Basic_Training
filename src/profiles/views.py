@@ -66,3 +66,28 @@ class ProfileDetailview(DetailView):
         if item_exists and qs.exists:
             context['locations'] = qs
         return context
+
+
+class ProfileSearchDetailview(DetailView):
+    template_name = 'profiles/user.html'
+    model = Profile
+    def get_object(self):
+        username = self.request.GET.get('username')
+        print(username)
+        if username is None:
+            raise Http404
+        return get_object_or_404(User, username__iexact=username, is_active=True)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileSearchDetailview, self).get_context_data(*args, **kwargs)
+        user = context['user']
+        is_following = False
+        if user.profile in self.request.user.is_following.all():
+            is_following = True
+        context['is_following'] = is_following
+        query = self.request.GET.get('query')
+        item_exists = Item.objects.filter(user=user).exists()
+        qs = RestaurantLocation.objects.filter(owner=user).search(query)
+        if item_exists and qs.exists:
+            context['locations'] = qs
+        return context
